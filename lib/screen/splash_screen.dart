@@ -1,4 +1,5 @@
 import 'package:flame/flame.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/game_images.dart';
@@ -32,7 +33,8 @@ class _SpalshScreenState extends State<SpalshScreen> {
   }
 
   void init() async {
-    // FlameAudio.bgm.play('bgm.pm3');
+    FlameAudio.bgm.load('bgm.mp3');
+    FlameAudio.bgm.play('bgm.mp3');
     GameImages.boys = await Flame.images.loadAll(
       List.generate(totalBoys, (index) => "boys/boy$index.png"),
     );
