@@ -25,6 +25,7 @@ dependencies:
   flutter:
     sdk: flutter
   flame: ^1.0.0-releasecandidate.11
+  flame_audio: ^1.0.0-rc.1
   font_awesome_flutter: ^9.0.0
   provider: ^5.0.0
 
