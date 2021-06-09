@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:natural_disaster/constants/game_audios.dart';
 import '../constants/responsiveness.dart';
 
 class CustomIconButton extends StatelessWidget {
   final IconData icon;
   final Function onTap;
+  final MaterialColor color;
   const CustomIconButton({
     Key? key,
     required this.icon,
     required this.onTap,
+    required this.color,
   }) : super(key: key);
 
   @override
@@ -15,6 +18,7 @@ class CustomIconButton extends StatelessWidget {
     return InkWell(
       onTap: () {
         onTap();
+        GameAudio.tapSound();
       },
       child: Container(
         width: Responsiveness.width(35),
@@ -25,8 +29,8 @@ class CustomIconButton extends StatelessWidget {
           ),
           gradient: RadialGradient(
             colors: [
-              Colors.green.shade50,
-              Colors.green.shade300,
+              color.shade50,
+              color.shade300,
             ],
           ),
         ),

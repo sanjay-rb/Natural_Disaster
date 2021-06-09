@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:natural_disaster/constants/game_audios.dart';
 import 'package:natural_disaster/constants/responsiveness.dart';
 import 'package:provider/provider.dart';
 
@@ -16,7 +17,7 @@ class PlayerSelection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      final Size size = Responsiveness.screenSize;
+    final Size size = Responsiveness.screenSize;
 
     CharacterList characterList = Provider.of<CharacterList>(context);
     List<Character> characters = characterList.charaters
@@ -34,9 +35,10 @@ class PlayerSelection extends StatelessWidget {
             gridDelegate:
                 SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
             itemBuilder: (_, index) => InkWell(
-              onTap: () {
+              onTap: () async {
                 if (characters[index].isUnlocked)
                   characterList.toggleSelection(characters[index].id);
+                GameAudio.tapSound();
               },
               child: ImageContainer(
                 character: characters[index],

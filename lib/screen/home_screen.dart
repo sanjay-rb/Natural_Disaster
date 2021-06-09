@@ -1,11 +1,8 @@
-import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
+import 'package:natural_disaster/constants/game_audios.dart';
 import 'package:natural_disaster/constants/responsiveness.dart';
 import 'package:natural_disaster/widget/home_header.dart';
-import 'package:provider/provider.dart';
 import '../widget/player_selection_icons.dart';
-import '../widget/custom_icon.dart';
-import '../provider/character_list_provider.dart';
 
 class HomeScreen extends StatefulWidget {
   static final routeName = "/home";
@@ -45,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 setState(() {
                                   isFemale = false;
                                 });
+                                GameAudio.tapSound();
                               },
                               child: Container(
                                 color: isFemale
@@ -75,6 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 setState(() {
                                   isFemale = true;
                                 });
+                                GameAudio.tapSound();
                               },
                               child: Container(
                                 color: isFemale
@@ -110,34 +109,39 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Align(
                 alignment: Alignment.bottomRight,
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      color: Colors.green,
-                      width: Responsiveness.width(5),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
+                child: InkWell(
+                  onTap: () {
+                    GameAudio.tapSound();
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
                         color: Colors.green,
-                        blurRadius: 0.5,
-                        spreadRadius: 0.5,
-                      )
-                    ],
-                    gradient: RadialGradient(
-                      colors: [
-                        Colors.green.shade50,
-                        Colors.green.shade300,
+                        width: Responsiveness.width(5),
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.green,
+                          blurRadius: 0.5,
+                          spreadRadius: 0.5,
+                        )
+                      ],
+                      gradient: RadialGradient(
+                        colors: [
+                          Colors.green.shade50,
+                          Colors.green.shade300,
+                        ],
+                      ),
+                    ),
+                    padding: EdgeInsets.all(10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text("Next"),
+                        Icon(Icons.navigate_next),
                       ],
                     ),
-                  ),
-                  padding: EdgeInsets.all(10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text("Next"),
-                      Icon(Icons.navigate_next),
-                    ],
                   ),
                 ),
               )

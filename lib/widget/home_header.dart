@@ -1,14 +1,38 @@
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/responsiveness.dart';
 import '../provider/character_list_provider.dart';
 import './custom_icon.dart';
 
-class HomeHeader extends StatelessWidget {
+class HomeHeader extends StatefulWidget {
   const HomeHeader({
     Key? key,
   }) : super(key: key);
+
+  @override
+  _HomeHeaderState createState() => _HomeHeaderState();
+}
+
+class _HomeHeaderState extends State<HomeHeader> {
+  late bool isBGMOff = false;
+  late bool isSoundOff = false;
+  late SharedPreferences pref;
+  Future<void> init() async {
+    pref = await SharedPreferences.getInstance();
+    setState(() {
+      isBGMOff = pref.getBool("isBGMOff")!;
+      isSoundOff = pref.getBool("isSoundOff")!;
+    });
+  }
+
+  @override
+  void initState() {
+    init();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,12 +86,29 @@ class HomeHeader extends StatelessWidget {
             child: Column(
               children: [
                 CustomIconButton(
-                  icon: Icons.music_note,
-                  onTap: () {},
+                  icon: isBGMOff ? Icons.music_off : Icons.music_note,
+                  color: isBGMOff ? Colors.grey : Colors.green,
+                  onTap: () async {
+                    setState(() {
+                      isBGMOff = !isBGMOff;
+                    });
+                    pref.setBool("isBGMOff", isBGMOff);
+                    if (isBGMOff) {
+                      FlameAudio.bgm.pause();
+                    } else {
+                      FlameAudio.bgm.resume();
+                    }
+                  },
                 ),
                 CustomIconButton(
-                  icon: Icons.volume_up,
-                  onTap: () {},
+                  icon: isSoundOff ? Icons.volume_off : Icons.volume_up,
+                  color: isSoundOff ? Colors.grey : Colors.green,
+                  onTap: () async {
+                    setState(() {
+                      isSoundOff = !isSoundOff;
+                    });
+                    pref.setBool('isSoundOff', isSoundOff);
+                  },
                 ),
               ],
             ),

@@ -37,20 +37,22 @@ class _SpalshScreenState extends State<SpalshScreen> {
   }
 
   void init() async {
-    await FlameAudio.bgm.loadAll(['bgm.mp3', 'click.mp3']);
-
+    FlameAudio.bgm.initialize();
+    await FlameAudio.bgm.loadAll(['bgm.mp3']);
     setState(() {
       _progress += (totalSounds / totalAsset);
     });
-    // SharedPreferences pref = await SharedPreferences.getInstance();
-    // if (pref.getBool('isBGMOff') == null) {
-    //   pref.setBool('isBGMOff', false);
-    // }
-    // FlameAudio.bgm.play('bgm.mp3');
-    // if (pref.getBool('isBGMOff') == true) {
-    //   FlameAudio.bgm.pause();
-    // }
-
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    if (pref.getBool('isBGMOff') == null) {
+      await pref.setBool('isBGMOff', false);
+    }
+    await FlameAudio.bgm.play('bgm.mp3');
+    if (pref.getBool('isBGMOff') == true) {
+      FlameAudio.bgm.pause();
+    }
+    if (pref.getBool('isSoundOff') == null) {
+      await pref.setBool('isSoundOff', false);
+    }
     GameImages.boys = await Flame.images.loadAll(
       List.generate(totalBoys, (index) => "boys/boy$index.png"),
     );
