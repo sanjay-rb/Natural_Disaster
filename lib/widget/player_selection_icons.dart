@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:natural_disaster/constants/responsiveness.dart';
 import 'package:provider/provider.dart';
 
 import '../provider/character_list_provider.dart';
@@ -8,15 +9,15 @@ import './image_container.dart';
 class PlayerSelection extends StatelessWidget {
   const PlayerSelection({
     Key? key,
-    required this.size,
     required this.isFemale,
   }) : super(key: key);
 
-  final Size size;
   final bool isFemale;
 
   @override
   Widget build(BuildContext context) {
+      final Size size = Responsiveness.screenSize;
+
     CharacterList characterList = Provider.of<CharacterList>(context);
     List<Character> characters = characterList.charaters
         .where((element) => element.isFemale == isFemale)

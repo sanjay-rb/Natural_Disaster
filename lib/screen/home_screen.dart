@@ -1,7 +1,10 @@
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
+import 'package:natural_disaster/constants/responsiveness.dart';
+import 'package:natural_disaster/widget/home_header.dart';
 import 'package:provider/provider.dart';
-
 import '../widget/player_selection_icons.dart';
+import '../widget/custom_icon.dart';
 import '../provider/character_list_provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,52 +20,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return Scaffold(
-      backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(Responsiveness.width(10)),
           child: Column(
             children: [
-              Container(
-                height: size.height * 0.1,
-                child: Row(
-                  children: [
-                    Consumer<CharacterList>(builder: (_, charaterList, w) {
-                      var charater = charaterList.charaters
-                          .where((element) => element.isSelected == true)
-                          .toList()[0];
-                      return Container(
-                        width: 64,
-                        height: 64,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                            width: MediaQuery.of(context).size.height * 0.005,
-                          ),
-                          gradient: RadialGradient(
-                            colors: [
-                              charater.color.shade50,
-                              charater.color.shade300,
-                            ],
-                          ),
-                        ),
-                        child: Image.asset(
-                          charater.gifPath,
-                          fit: BoxFit.fill,
-                        ),
-                      );
-                    }),
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: size.height * 0.2,
+              HomeHeader(),
+              Spacer(
+                flex: 1,
               ),
               Expanded(
+                flex: 5,
                 child: Container(
+                  height: Responsiveness.heightRatio(0.5),
                   child: Column(
                     children: [
                       Row(
@@ -131,13 +102,45 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                       PlayerSelection(
-                        size: size,
                         isFemale: isFemale,
-                      )
+                      ),
                     ],
                   ),
                 ),
               ),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.green,
+                      width: Responsiveness.width(5),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.green,
+                        blurRadius: 0.5,
+                        spreadRadius: 0.5,
+                      )
+                    ],
+                    gradient: RadialGradient(
+                      colors: [
+                        Colors.green.shade50,
+                        Colors.green.shade300,
+                      ],
+                    ),
+                  ),
+                  padding: EdgeInsets.all(10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text("Next"),
+                      Icon(Icons.navigate_next),
+                    ],
+                  ),
+                ),
+              )
             ],
           ),
         ),

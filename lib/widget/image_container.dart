@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../model/character.dart';
 
@@ -56,10 +55,10 @@ class ImageContainer extends StatelessWidget {
                   alignment: Alignment.topRight,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: FaIcon(
-                      FontAwesomeIcons.lock,
+                    child: Icon(
+                      Icons.lock,
+                      color: Colors.white,
                       size: 15,
-                      color: Colors.grey,
                     ),
                   ),
                 ),

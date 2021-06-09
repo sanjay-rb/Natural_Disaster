@@ -26,6 +26,7 @@ class NaturalDisasterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Natural Disaster',
       theme: ThemeData(
         primarySwatch: Colors.lightGreen,
