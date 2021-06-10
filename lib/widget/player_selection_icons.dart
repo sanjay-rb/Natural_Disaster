@@ -32,8 +32,11 @@ class PlayerSelection extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: GridView.builder(
             itemCount: characters.length,
-            gridDelegate:
-                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 3,
+              crossAxisSpacing: Responsiveness.width(10),
+              mainAxisSpacing: Responsiveness.height(10),
+            ),
             itemBuilder: (_, index) => InkWell(
               onTap: () async {
                 if (characters[index].isUnlocked)

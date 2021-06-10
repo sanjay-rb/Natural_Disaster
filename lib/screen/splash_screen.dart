@@ -1,9 +1,9 @@
 import 'package:flame/flame.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
-import 'package:natural_disaster/constants/responsiveness.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../constants/responsiveness.dart';
 import '../constants/game_images.dart';
 import './home_screen.dart';
 

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:natural_disaster/constants/responsiveness.dart';
-import 'package:natural_disaster/widget/custom_text_btn.dart';
-import 'package:natural_disaster/widget/stage_items.dart';
+
+import '../widget/custom_text_btn.dart';
+import '../widget/stage_items.dart';
+import '../constants/responsiveness.dart';
 
 class StageScreen extends StatelessWidget {
   static const routeName = '/stage';

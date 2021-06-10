@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:natural_disaster/constants/game_audios.dart';
-import 'package:natural_disaster/constants/responsiveness.dart';
+
+import '../constants/game_audios.dart';
+import '../constants/responsiveness.dart';
 
 class StageItems extends StatelessWidget {
   final stage;

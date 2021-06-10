@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:natural_disaster/constants/game_audios.dart';
+
+import '../constants/game_audios.dart';
 import '../constants/responsiveness.dart';
 
 class CustomIconButton extends StatelessWidget {

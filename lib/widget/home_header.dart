@@ -1,12 +1,12 @@
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
-import 'package:natural_disaster/provider/highscore_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constants/responsiveness.dart';
 import '../provider/character_list_provider.dart';
-import 'custom_icon_btn.dart';
+import '../provider/highscore_provider.dart';
+import './custom_icon_btn.dart';
 
 class HomeHeader extends StatefulWidget {
   const HomeHeader({

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:natural_disaster/constants/game_audios.dart';
-import 'package:natural_disaster/constants/responsiveness.dart';
-import 'package:natural_disaster/screen/stage_screen.dart';
-import 'package:natural_disaster/widget/custom_text_btn.dart';
-import 'package:natural_disaster/widget/home_header.dart';
+
+import '../constants/game_audios.dart';
+import '../constants/responsiveness.dart';
+import '../widget/custom_text_btn.dart';
+import '../widget/home_header.dart';
 import '../widget/player_selection_icons.dart';
+import './stage_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = "/home";
