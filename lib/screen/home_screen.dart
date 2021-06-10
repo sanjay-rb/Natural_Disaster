@@ -109,28 +109,27 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
               ),
-              Align(
-                alignment: Alignment.bottomRight,
-                child: CustomTextButton(
-                  onTap: () {
-                    Navigator.of(context)
-                        .pushNamed(StageScreen.routeName, arguments: widget);
-                  },
-                  text: "Next",
-                  icon: Icons.navigate_next,
-                  isIconFirst: false,
-                ),
-              ),
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: CustomTextButton(
-                  onTap: () {
-                    // TODO : Create Crrdits Page.....
-                  },
-                  text: "Credits",
-                  icon: Icons.face,
-                  isIconFirst: true,
-                ),
+              Row(
+                children: [
+                  CustomTextButton(
+                    onTap: () {
+                      // TODO : Create Credits Page.....
+                    },
+                    text: "Credits",
+                    icon: Icons.face,
+                    isIconFirst: true,
+                  ),
+                  Spacer(),
+                  CustomTextButton(
+                    onTap: () {
+                      Navigator.of(context)
+                          .pushNamed(StageScreen.routeName, arguments: widget);
+                    },
+                    text: "Next",
+                    icon: Icons.navigate_next,
+                    isIconFirst: false,
+                  ),
+                ],
               ),
             ],
           ),

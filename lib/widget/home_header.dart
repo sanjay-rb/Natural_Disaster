@@ -1,5 +1,6 @@
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
+import 'package:natural_disaster/provider/highscore_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -68,16 +69,18 @@ class _HomeHeaderState extends State<HomeHeader> {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.only(left: 8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Total Runs : 1500 km",
-                  ),
-                  Text(
-                    "Coins : 10000",
-                  ),
-                ],
+              child: Consumer<HighScore>(
+                builder: (_, hs, child) => Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Total Runs : ${hs.totalRun} km",
+                    ),
+                    Text(
+                      "Coins : ${hs.totalCoins}",
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

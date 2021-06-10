@@ -39,6 +39,7 @@ class _SpalshScreenState extends State<SpalshScreen> {
   void init() async {
     FlameAudio.bgm.initialize();
     await FlameAudio.bgm.loadAll(['bgm.mp3']);
+    await FlameAudio.audioCache.loadAll(['click.mp3']);
     setState(() {
       _progress += (totalSounds / totalAsset);
     });

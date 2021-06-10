@@ -1,13 +1,14 @@
 import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
-import 'package:natural_disaster/screen/stage_screen.dart';
-import 'package:natural_disaster/widget/fade_page_route.dart';
-import 'package:natural_disaster/widget/left_right_route.dart';
 import 'package:provider/provider.dart';
 
 import './screen/splash_screen.dart';
 import './screen/home_screen.dart';
+import './screen/stage_screen.dart';
 import './provider/character_list_provider.dart';
+import './provider/highscore_provider.dart';
+import './widget/routes/left_right_route.dart';
+import './widget/routes/fade_page_route.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +18,9 @@ Future<void> main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider<CharacterList>(create: (_) => CharacterList()),
+        ChangeNotifierProvider<HighScore>(
+          create: (_) => HighScore(),
+        ),
       ],
       builder: (ctx, w) => NaturalDisasterApp(),
     ),
@@ -45,6 +49,11 @@ class NaturalDisasterApp extends StatelessWidget {
           caption: TextStyle(
             fontFamily: "OdibeeSans",
             fontSize: 25,
+          ),
+          headline1: TextStyle(
+            fontFamily: "OdibeeSans",
+            fontSize: 30,
+            color: Colors.black,
           ),
         ),
       ),
