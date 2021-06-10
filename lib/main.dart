@@ -1,5 +1,8 @@
 import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
+import 'package:natural_disaster/screen/stage_screen.dart';
+import 'package:natural_disaster/widget/fade_page_route.dart';
+import 'package:natural_disaster/widget/left_right_route.dart';
 import 'package:provider/provider.dart';
 
 import './screen/splash_screen.dart';
@@ -46,9 +49,21 @@ class NaturalDisasterApp extends StatelessWidget {
         ),
       ),
       initialRoute: SpalshScreen.routeName,
-      routes: {
-        SpalshScreen.routeName: (_) => const SpalshScreen(),
-        HomeScreen.routeName: (_) => const HomeScreen(),
+      onGenerateRoute: (RouteSettings settings) {
+        print(settings.toString());
+        switch (settings.name) {
+          case SpalshScreen.routeName:
+            return MaterialPageRoute(builder: (_) => SpalshScreen());
+          case HomeScreen.routeName:
+            return FadePageRoute(
+              enterPage: HomeScreen(),
+            );
+          case StageScreen.routeName:
+            return LeftRightRoute(
+              exitPage: settings.arguments as HomeScreen,
+              enterPage: StageScreen(),
+            );
+        }
       },
     );
   }

@@ -8,7 +8,7 @@ import '../constants/game_images.dart';
 import './home_screen.dart';
 
 class SpalshScreen extends StatefulWidget {
-  static final routeName = '/stash';
+  static const routeName = '/splash';
   const SpalshScreen({Key? key}) : super(key: key);
 
   @override
@@ -90,7 +90,8 @@ class _SpalshScreenState extends State<SpalshScreen> {
       _progress += (totalInterrupts / totalAsset);
     });
     Responsiveness.screenSize = MediaQuery.of(context).size;
-    Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+    Navigator.of(context)
+        .pushReplacementNamed(HomeScreen.routeName, arguments: widget);
   }
 
   @override

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:natural_disaster/constants/game_audios.dart';
 import 'package:natural_disaster/constants/responsiveness.dart';
+import 'package:natural_disaster/screen/stage_screen.dart';
+import 'package:natural_disaster/widget/custom_text_btn.dart';
 import 'package:natural_disaster/widget/home_header.dart';
 import '../widget/player_selection_icons.dart';
 
 class HomeScreen extends StatefulWidget {
-  static final routeName = "/home";
+  static const routeName = "/home";
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
@@ -19,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
+        child: Container(
           padding: EdgeInsets.all(Responsiveness.width(10)),
           child: Column(
             children: [
@@ -109,42 +111,27 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               Align(
                 alignment: Alignment.bottomRight,
-                child: InkWell(
+                child: CustomTextButton(
                   onTap: () {
-                    GameAudio.tapSound();
+                    Navigator.of(context)
+                        .pushNamed(StageScreen.routeName, arguments: widget);
                   },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.green,
-                        width: Responsiveness.width(5),
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.green,
-                          blurRadius: 0.5,
-                          spreadRadius: 0.5,
-                        )
-                      ],
-                      gradient: RadialGradient(
-                        colors: [
-                          Colors.green.shade50,
-                          Colors.green.shade300,
-                        ],
-                      ),
-                    ),
-                    padding: EdgeInsets.all(10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text("Next"),
-                        Icon(Icons.navigate_next),
-                      ],
-                    ),
-                  ),
+                  text: "Next",
+                  icon: Icons.navigate_next,
+                  isIconFirst: false,
                 ),
-              )
+              ),
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: CustomTextButton(
+                  onTap: () {
+                    // TODO : Create Crrdits Page.....
+                  },
+                  text: "Credits",
+                  icon: Icons.face,
+                  isIconFirst: true,
+                ),
+              ),
             ],
           ),
         ),
